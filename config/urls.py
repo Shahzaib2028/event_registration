@@ -18,6 +18,7 @@ urlpatterns = [
     path("users/", include("event_management.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("registration/", include("user.urls", namespace="user_registration")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS
