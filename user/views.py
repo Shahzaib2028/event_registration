@@ -8,6 +8,9 @@ from .serializers import UserSerializer
 
 class RegisterUserAPI(APIView):
 
+    authentication_classes = ()
+    permission_classes = ()
+
     serializer_class = UserSerializer
 
     def post(self, request):
@@ -20,6 +23,9 @@ class RegisterUserAPI(APIView):
             return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
 
 class loginAPI(APIView):
+
+    authentication_classes = ()
+    permission_classes = ()
 
     def post(self, request):
         username = request.data.get('username')
@@ -35,8 +41,8 @@ class loginAPI(APIView):
 
 class LogoutAPI(APIView):
 
-    # authentication = ()
-    # permission_classes = ()
+    authentication_classes = ()
+    permission_classes = ()
 
     def post(self, request):
         auth.logout(request)
