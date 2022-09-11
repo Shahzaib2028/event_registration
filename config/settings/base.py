@@ -89,6 +89,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "event_management.users",
+    "user",
+    "manage_event",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -288,7 +290,8 @@ SOCIALACCOUNT_FORMS = {"signup": "event_management.users.forms.UserSocialSignupF
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        # "rest_framework.authentication.SessionAuthentication",
+        "core.authentication.CsrfExemptSessionAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
