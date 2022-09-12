@@ -1,13 +1,15 @@
 from cgitb import lookup
 import imp
+from tkinter.tix import Tree
 from django.shortcuts import render
 from manage_event.serializers import EventsSerializers
-from rest_framework.generics import CreateAPIView , ListAPIView , RetrieveUpdateDestroyAPIView
+from rest_framework.generics import CreateAPIView , ListAPIView , RetrieveUpdateDestroyAPIView , RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from .models import Events
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# from core.permissions import IsOwner
+from rest_framework import status
+
 
 
 # Create your views here.
@@ -34,15 +36,14 @@ class RetreiveEventsAPI(ListAPIView):
 
 
 
-# class RetreiveEventAPI(APIView):
+class RetreiveEventAPI(RetrieveAPIView):
 
-#     def get(self , request,  pk=None , format = None):
-#         id = pk
+    serializer_class = EventsSerializers
 
-#         if id is not None:
-#             event = Events.objects.get(id=id)
-#             serializers = EventsSerializers(event)
-#             return Response(serializers.data)
+    def get_queryset(self):
+        return (Events.objects.filter())
+
+
 
 
 class UpdateDeleteAPI(RetrieveUpdateDestroyAPIView):
@@ -52,6 +53,26 @@ class UpdateDeleteAPI(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
+
         return Events.objects.filter(owner = self.request.user)
+            
+
+class AttendAPI(APIView):
+    
+    # serializer_class = EventsSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self , request,  *args, **kwargs):
+        try:
+            event = Events.objects.get(pk = kwargs.get('id'))
+            event.attendees.add(request.user)
+            return Response ({"message" : "{username} just joined the event".format(username = request.user.username)
+            , "status" : status.HTTP_201_CREATED})
+
+        except Events.DoesNotExist:
+            return Response ({"message" : "This Event doest not exist" , "status":status.HTTP_400_BAD_REQUEST})
+            
+
+
     
 

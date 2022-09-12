@@ -5,6 +5,7 @@ from .models import Events
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'date' , "location" , "owner")
+    list_display = ['title', 'description', 'date' , "location" , "owner"]
+    filter_horizontal = ['attendees']
 
 admin.site.register(Events, EventAdmin)
