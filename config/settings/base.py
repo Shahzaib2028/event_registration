@@ -45,11 +45,27 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # DATABASES = {"default": env.db("DATABASE_URL")}
 # DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-DATABASES = {
-    'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(ROOT_DIR, 'db.sqlite3'),
-        }
+
+
+
+# DATABASES = {
+#     'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(ROOT_DIR, 'db.sqlite3'),
+#         }
+# }
+
+
+
+DATABASES={
+   'default':{
+      'ENGINE':'django.db.backends.postgresql_psycopg2',
+      'NAME':'postgres',
+      'USER':'postgres',
+      'PASSWORD':'3590',
+      'HOST':'localhost',
+      'PORT':'5433',
+   }
 }
 
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD

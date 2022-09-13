@@ -3,7 +3,7 @@ from django.urls import path
 from .views import RegisterUserAPI , loginAPI , LogoutAPI
   
 
-app_name = "user_registration"
+app_name = "user"
 urlpatterns = [
     path("register/", view=RegisterUserAPI.as_view(), name="register"),
     path("login/", view=loginAPI.as_view(), name="login"),
