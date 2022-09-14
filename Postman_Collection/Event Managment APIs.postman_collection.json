@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "b0e66b3c-b036-4a27-9276-fc99251b24e2",
+		"name": "Event Managment APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "sana",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "email",
+						"value": "sana@gmail.com",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "sana123",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "mobile_number",
+						"value": "03322651753",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"daisy\",\n    \"email\":\"daisy@gmai.com\",\n    \"password\":\"daisy123\",\n    \"mobile_number\":\"03312759126\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/registration/register/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"registration",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"token = responseJson['token']",
+							"console.log(token)",
+							"pm.environment.set(\"AUTH_TOKEN\", token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"daisy\",\n    \"password\":\"daisy123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/registration/login/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"registration",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"AUTH_TOKEN\", \"\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "Token {{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/registration/logout/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"registration",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Event",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/event/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"event",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single Event",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/event/retrieve/5/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"event",
+						"retrieve",
+						"5",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"daisy's event\",\n    \"description\": \"daisy's event\",\n    \"date\": \"2021-02-13T23:46:00Z\",\n    \"location\": \"England\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/event/create/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"event",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"title\": \"daisy's birthday\",\n        \"description\": \"daisy ka event\",\n        \"date\": \"2023-09-29T01:15:00Z\",\n        \"location\": \"Faisalabad\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/event/5/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"event",
+						"5",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/event/12/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"event",
+						"12",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attend event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/event/attend/4/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"event",
+						"attend",
+						"4",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
