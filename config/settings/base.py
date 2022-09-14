@@ -107,6 +107,7 @@ LOCAL_APPS = [
     "event_management.users",
     "user",
     "manage_event",
+    "migration_five_million",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -130,6 +131,9 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
+
+
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 # PASSWORDS
 # ------------------------------------------------------------------------------

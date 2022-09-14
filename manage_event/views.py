@@ -1,7 +1,7 @@
-from cgitb import lookup
-import imp
-from tkinter.tix import Tree
-from django.shortcuts import render
+# from cgitb import lookup
+# import imp
+# from tkinter.tix import Tree
+# from django.shortcuts import render
 from manage_event.serializers import EventsSerializers
 from rest_framework.generics import CreateAPIView , ListAPIView , RetrieveUpdateDestroyAPIView , RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
