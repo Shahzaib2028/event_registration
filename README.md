@@ -68,9 +68,9 @@ or you can also give specific port number as well by using command
 
 ```python3 manage.py runserver <port no.>```
 
-## URLs Information
+### URLs Information
 
-### To register a new User
+## To register a new User
 
 If user wants to register/signup then go to URL.
 
